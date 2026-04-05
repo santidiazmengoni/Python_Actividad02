@@ -49,10 +49,16 @@ def actualizar_datos(datos, puntaje_ronda):
 
 # imprimo la tabla con los datos de los participantes
 def imprimir_tabla(datos):
+    def obtener_total(nombre):
+        return datos[nombre]["total_puntos"]
+
+    ordenados = list(datos.keys())
+    ordenados.sort(key=obtener_total, reverse=True)
+
     print("Cocinero      Puntaje    Rondas ganadas    Mejor ronda    Promedio")
     print("-------------------------------------------------------------------")
 
-    for participante in datos:
+    for participante in ordenados:
         total = datos[participante]["total_puntos"]
         ganadas = datos[participante]["rondas_ganadas"]
         mejor = datos[participante]["mejor_ronda"]
